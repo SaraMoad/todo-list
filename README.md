@@ -11,8 +11,10 @@ Create a backend with Spring that can create, update, read and delete todos from
 ## Frontend MVP
 
 - Ability to add, complete, delete and edit todos
+Services File 
 - Typescript & testing with React Test Library
-- All errors must be handled and passed on properly back to the user (toast notifications are a good way of doing this)
+- All errors must be handled and passed on properly back to the user (toast notifications are a good way of doing this) 
+: implement the toast notification I built with mitch. 
 - Must look polished, there is an example image attached to this spec and there are hundreds of examples of good looking todo apps online
 
 ## Backend MVP
@@ -27,3 +29,5 @@ TaskDescription = String;
 Length of Time = String
 Priority = String;
 Due Date: new Date.
+
+http://localhost:8080/swagger-ui/index.html#/ 
