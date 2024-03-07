@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import { TodoItem } from "../../services/todoItems";
 import { faTrash, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { priorityValue } from "../../services/priorities";
 interface TodoItemProps {
   name: string;
   description: string;
@@ -11,14 +11,9 @@ interface TodoItemProps {
   dueDate: string;
   id: string;
   setTodoItems: (res: any) => any;
+  setTodoItem: (res: any) => any;
+  setIsOpen: (res: any) => any;
 }
-
-const priorityValue = [
-  "Urgent",
-  "High Priority",
-  "Mid Priority",
-  "Low Priority",
-];
 
 const TodoItemCard = ({
   name,
@@ -27,8 +22,11 @@ const TodoItemCard = ({
   dueDate,
   id,
   setTodoItems,
+  setTodoItem,
+  setIsOpen,
 }: TodoItemProps) => {
   const [checked, setChecked] = useState(false);
+
   const handleClick = () => {
     checked ? setChecked(false) : setChecked(true);
   };
@@ -37,8 +35,9 @@ const TodoItemCard = ({
     TodoItem.delete(id).then((res) => setTodoItems(res));
   };
 
-  const handleEdit = () => {
-    console.log("edit");
+  const handleEdit = async () => {
+    await TodoItem.find(id).then((res) => setTodoItem(res));
+    setIsOpen(true);
   };
 
   return (

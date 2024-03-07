@@ -8,12 +8,10 @@ const HomePage = () => {
   useEffect(() => {
     TodoItem.getAll().then((res) => setTodoItems(res));
   }, []);
-  console.log(todoItems);
 
   return (
     <div>
       <TodoList todoItems={todoItems} setTodoItems={setTodoItems} />
-      {/* <TodoItemModal  /> */}
     </div>
   );
 };
