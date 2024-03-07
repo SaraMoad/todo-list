@@ -1,0 +1,15 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.error {
+    color: red;
+}
