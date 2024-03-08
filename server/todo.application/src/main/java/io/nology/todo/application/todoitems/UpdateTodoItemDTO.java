@@ -6,10 +6,10 @@ import jakarta.validation.constraints.Pattern;
 
 public class UpdateTodoItemDTO {
 
-		@Pattern(regexp = "^(?=\\S).*$", message = "Name cannot be empty")
+		@Pattern(regexp = "^(?=\\S).*$", message = "Name Cannot be empty")
 		private String name;
 
-		@Pattern(regexp = "^(?=\\S).*$", message = "Description cannot be empty")
+		@Pattern(regexp = "^(?=\\S).*$", message = "Description Cannot be empty")
 		private String description;
 
 		private Date dueDate;

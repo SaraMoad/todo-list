@@ -31,3 +31,37 @@ build/
 
 ### VS Code ###
 .vscode/
+.metadata/
+._.gitignore
+._.mvn
+._.src
+._pom.xml
+mvnw.cmd
+logs
+._src
+._HELP.md
+._mvnw
+._mvnw.cmd
+._test
+._main
+._java
+._resources
+._io
+._application.properties
+._static
+._templates
+._wrapper
+._maven-wrapper.jar 
+.mvn/wrapper/._maven-wrapper.properties
+._nology
+._todo
+._application
+._CreateTodoItemDTO.java 
+._TodoItem.java 
+._TodoItemController.java 
+._TodoItemRepository.java 
+._TodoItemService.java 
+._UpdateTodoItemDTO.java
+._Application.java
+._exceptions
+/application.properties/
