@@ -21,34 +21,40 @@ export class TodoItem {
     }
         public static async find(id: string): Promise<any> {
         const data = await fetch(`http://localhost:8080/todoList/${id}`);
-        return data.json();
-    }
+          if (!data.ok) {
+            throw new Error('Failed to get todo Items');
+          }
+          return data.json();
+        };
+    
 
     public static async add(data: any): Promise<TodoItem> {
-  const response = await fetch('http://localhost:8080/todoList', {
+    const response = await fetch('http://localhost:8080/todoList', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  if (!response.ok) {
-    throw new Error('Failed to get posts');
-  }
-  return response.json();
+
+    if (!response.ok) {
+      throw new Error('Failed to get todo Items');
+    }
+    return response.json();
     };
 
-public static async update(data: any): Promise<Response> {
-  const response = await fetch(`http://localhost:8080/todoList/${data.id}`, {
+  public static async update(id: string| undefined, data: any): Promise<TodoItem[]> {
+  const response = await fetch(`http://localhost:8080/todoList/${id}`, {
     method: 'PATCH',
+    body: JSON.stringify({ ...data, id }),
     headers: {
       'Content-Type': 'application/json',
     },
   });
   if (!response.ok) {
-    throw new Error('Failed to get posts');
+    throw new Error('Failed to update Todo Item');
   }
-  return response.json();
+  return TodoItem.getAll();
 };
     
 public static async delete(id: string): Promise<TodoItem[]> {
@@ -61,7 +67,6 @@ public static async delete(id: string): Promise<TodoItem[]> {
   if (!response.ok) {
     throw new Error('Failed to delete item');
     }
-    console.log(response)
     return TodoItem.getAll();
 };
 
