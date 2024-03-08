@@ -40,7 +40,7 @@ export class TodoItem {
     if (!response.ok) {
       throw new Error('Failed to get todo Items');
     }
-    return response.json();
+    return TodoItem.getAll();
     };
 
   public static async update(id: string| undefined, data: any): Promise<TodoItem[]> {
