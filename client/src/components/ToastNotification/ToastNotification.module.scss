@@ -1,0 +1,53 @@
+
+ .toastContent {
+
+     width:100%; 
+     border: solid 2px white; 
+     border-radius: 5px;
+     color:black;
+     padding:2px; 
+     display: flex; 
+     justify-content: space-between; 
+     align-items: center; 
+    }
+
+ .success {
+     background-color: rgb(109, 189, 109);
+ }
+
+ .error {
+     background-color: rgb(228, 78, 78);
+     color: white;
+ }
+ 
+.toastBox {
+    position: absolute;
+    background-color:white;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.toastClose {
+    padding-top: 1px;
+    pointer-events: auto;
+    &:hover {
+    cursor: pointer;
+     transition: all;
+    }   
+}
+
+ .toastWrapper {
+    position: fixed;
+    z-index:10;
+    inset: 0;
+    height:auto;
+    width: fit-content;
+    display: flex;
+    justify-content: end;
+    align-items:end;
+    padding:4px;
+    margin: 10px;
+    pointer-events:none;
+}
+
