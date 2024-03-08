@@ -1,9 +1,9 @@
-import Button from "../../components/Button/Button";
 import { TodoItem } from "../../services/todoItems";
 import AddTodoForm from "../../components/todoForm/AddTodoForm";
 import EditTodoForm from "../../components/todoForm/EditTodoForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import styles from "./Modal.module.scss";
 
 interface ModalProps {
   todoItem?: TodoItem;
@@ -11,6 +11,7 @@ interface ModalProps {
   setIsOpen: (value: any) => any;
   setTodoItem: (value: any) => any;
   setTodoItems: (value: any) => any;
+  dispatchToast: (message: string, variant: string) => unknown;
 }
 
 const Modal = ({
@@ -19,16 +20,18 @@ const Modal = ({
   isOpen,
   setTodoItem,
   setTodoItems,
+  dispatchToast,
 }: ModalProps) => {
-  console.log(todoItem, "item");
   const onSubmit = async (data: any) => {
-    await TodoItem.add(data);
+    await TodoItem.add(data)
+      .then((res) => setTodoItems(res))
+      .catch((e) => dispatchToast(e.message, "error"));
+    setIsOpen(false);
   };
   const onSubmitEdit = async (data: any) => {
-    console.log(data);
-    console.log("clicked");
     await TodoItem.update(todoItem?.id, data).then((res) => setTodoItems(res));
     setIsOpen(false);
+    setTodoItem(undefined);
   };
   const onClick = () => {
     setIsOpen(false);
@@ -38,15 +41,28 @@ const Modal = ({
   return (
     <>
       {isOpen && (
-        <div>
-          <Button handleClick={onClick}>
-            <FontAwesomeIcon icon={faXmark} />
-          </Button>
-          {todoItem ? (
-            <EditTodoForm submitHandler={onSubmitEdit} todoItem={todoItem} />
-          ) : (
-            <AddTodoForm submitHandler={onSubmit} />
-          )}
+        <div className={styles.container}>
+          <div className={styles.modalBox}>
+            <div className={styles.button}>
+              <button className={styles.button} onClick={onClick}>
+                <FontAwesomeIcon className={styles.icon} icon={faXmark} />
+              </button>
+            </div>
+            {todoItem ? (
+              <div className={styles.modalContent}>
+                <h3 className={styles.header}>Edit Task</h3>
+                <EditTodoForm
+                  submitHandler={onSubmitEdit}
+                  todoItem={todoItem}
+                />
+              </div>
+            ) : (
+              <div className={styles.modalContent}>
+                <h3 className={styles.header}>Add Task</h3>
+                <AddTodoForm submitHandler={onSubmit} />
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>
