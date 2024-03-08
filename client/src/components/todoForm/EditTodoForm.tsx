@@ -36,15 +36,15 @@ const EditTodoForm = ({ submitHandler, todoItem }: AddTodoFormProps) => {
   console.log(errors, "errors");
 
   return (
-    <form onSubmit={handleSubmit(submitHandler)}>
-      <div>
+    <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
+      <div className={styles.div}>
         <label htmlFor="name">Task Name: </label>
         <input type="text" id="name" {...register("name")} />
         {errors.name && (
           <p className={styles.error}>{errors.name.message?.toString()}</p>
         )}
       </div>
-      <div>
+      <div className={styles.div}>
         <label htmlFor="description">Description: </label>
         <input type="text" id="description" {...register("description")} />
         {errors.description && (
@@ -53,14 +53,14 @@ const EditTodoForm = ({ submitHandler, todoItem }: AddTodoFormProps) => {
           </p>
         )}
       </div>
-      <div>
-        <label htmlFor="dueDate">Due Date </label>
+      <div className={styles.div}>
+        <label htmlFor="dueDate">Due Date: </label>
         <input type="datetime-local" id="dueDate" {...register("dueDate")} />
         {errors.dueDate && (
           <p className={styles.error}>{errors.dueDate?.message?.toString()}</p>
         )}
       </div>
-      <div>
+      <div className={styles.div}>
         <label htmlFor="priority">Priority: </label>
         <select id="priority" {...register("priority")}>
           <option value="0">Urgent</option>
@@ -72,7 +72,9 @@ const EditTodoForm = ({ submitHandler, todoItem }: AddTodoFormProps) => {
           <p className={styles.error}>{errors.priority.message?.toString()}</p>
         )}
       </div>
-      <button type="submit">Edit Task</button>
+      <button className={styles.button} type="submit">
+        Edit Task
+      </button>
     </form>
   );
 };
