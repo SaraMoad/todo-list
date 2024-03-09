@@ -10,11 +10,11 @@ interface AddTodoFormProps {
 }
 
 const EditTodoForm = ({ submitHandler, todoItem }: AddTodoFormProps) => {
-  // console.log(todoItem, todoItem.id);
-  console.log(typeof todoItem.dueDate, todoItem.dueDate);
   const schema = z.object({
-    name: z.string().min(1, "Title must be at least 1 character long"),
-    description: z.string(),
+    name: z.string().min(1, "Task Name must be at least 1 character long"),
+    description: z
+      .string()
+      .min(1, "description must be at least 1 character long"),
     dueDate: z.string(),
     priority: z.string(),
   });
@@ -32,8 +32,6 @@ const EditTodoForm = ({ submitHandler, todoItem }: AddTodoFormProps) => {
       priority: String(todoItem.priority),
     },
   });
-
-  console.log(errors, "errors");
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>

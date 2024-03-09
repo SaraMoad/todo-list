@@ -9,8 +9,10 @@ interface AddTodoFormProps {
 
 const AddTodoForm = ({ submitHandler }: AddTodoFormProps) => {
   const schema = z.object({
-    name: z.string().min(1, "Title must be at least 1 character long"),
-    description: z.string(),
+    name: z.string().min(1, "Task Name must be at least 1 character long"),
+    description: z
+      .string()
+      .min(1, "Description must be at least 1 character long"),
     dueDate: z.string(),
     priority: z.string(),
   });
@@ -20,8 +22,6 @@ const AddTodoForm = ({ submitHandler }: AddTodoFormProps) => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
-
-  console.log(errors, "errors");
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
