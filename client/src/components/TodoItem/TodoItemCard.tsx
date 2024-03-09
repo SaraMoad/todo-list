@@ -28,9 +28,13 @@ const TodoItemCard = ({
   dispatchToast,
 }: TodoItemProps) => {
   const [checked, setChecked] = useState(false);
+  let classList = [styles.name];
   const handleClick = () => {
     checked ? setChecked(false) : setChecked(true);
   };
+  checked
+    ? (classList = [styles.name, styles.underline])
+    : (classList = [styles.name]);
 
   const handleDelete = () => {
     TodoItem.delete(id)
@@ -53,7 +57,7 @@ const TodoItemCard = ({
             onClick={handleClick}
             type="checkbox"
           ></input>
-          <h3 className={styles.name}>{name}</h3>
+          <h3 className={classList.join(" ")}>{name}</h3>
           <p className={styles.dueDate}>Due Date: {dueDate.slice(0, 10)}</p>
         </div>
         <div className={styles.header__item}>
