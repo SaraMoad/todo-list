@@ -18,18 +18,9 @@ const HomePage = () => {
     setIsOpen(true);
   };
   const dispatchToast = (toastMessage: string, toastVariant: string) => {
-    console.log(toastMessage, toastVariant);
-    // setIsClosed(false);
+    setIsClosed(false);
     setMessage(toastMessage);
     setVariant(toastVariant);
-  };
-
-  console.log(message, variant);
-  const onClose = () => {
-    // setIsClosed(true);
-    console.log(isClosed);
-    // setMessage(null);
-    // setVariant(null);
   };
 
   useEffect(() => {
@@ -59,13 +50,15 @@ const HomePage = () => {
           dispatchToast={dispatchToast}
         />
       )}
-      {
-        // <ToastNotification
-        //   message={message}
-        //   variant={variant}
-        //   onClose={onClose}
-        // />
-      }
+      {!isClosed && (
+        <ToastNotification
+          message={message}
+          variant={variant}
+          setIsClosed={setIsClosed}
+          setMessage={setMessage}
+          setVariant={setVariant}
+        />
+      )}
     </div>
   );
 };

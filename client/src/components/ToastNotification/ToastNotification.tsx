@@ -1,40 +1,47 @@
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./ToastNotification.module.scss";
-import Button from "../Button/Button";
-import { useState } from "react";
 
 interface ToastNotificationProps {
   message: string | null;
   variant: string | null;
-  onClose: () => any;
+  setMessage: (message: string | null) => unknown;
+  setVariant: (variant: string | null) => unknown;
+  setIsClosed: (value: boolean) => unknown;
 }
-
 const ToastNotification = ({
   message,
   variant,
-  onClose,
+  setMessage,
+  setVariant,
+  setIsClosed,
 }: ToastNotificationProps) => {
-  const [contentStyles, setContentStyles] = useState(" ");
+  const onClose = () => {
+    setIsClosed(true);
+    setMessage(null);
+    setVariant(null);
+  };
+
+  let classList = [styles.toastContent];
   if (variant === "success") {
-    setContentStyles("styles.success");
+    classList = [styles.toastContent, styles.success];
   } else if (variant === "error") {
-    setContentStyles("styles.error");
+    classList = [styles.toastContent, styles.success];
   }
 
-  const classList = [styles.toastContent, contentStyles];
   return (
     <>
       <div className={styles.toastWrapper} data-testid="toastWrapper">
         <div className={styles.toastBox} data-testid="toastBox">
           <div className={classList.join(" ")} data-testid="toastContent">
             <p>{message}</p>
-            <Button handleClick={onClose} data-testid="toastClose">
-              <FontAwesomeIcon
-                className="h-6 w-6 text-gray-500 hover:text-white"
-                icon={faXmark}
-              />
-            </Button>
+            <button
+              className={styles.button}
+              onClick={onClose}
+              data-testid="toastClose"
+            >
+              <FontAwesomeIcon className={styles.icon} icon={faXmark} />
+            </button>
           </div>
         </div>
       </div>
