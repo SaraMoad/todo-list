@@ -11,7 +11,7 @@ interface ModalProps {
   setIsOpen: (value: any) => any;
   setTodoItem: (value: any) => any;
   setTodoItems: (value: any) => any;
-  dispatchToast: (message: string, variant: string) => unknown;
+  dispatchToast: (message: string, variant: string) => any;
 }
 
 const Modal = ({
@@ -27,9 +27,13 @@ const Modal = ({
       .then((res) => setTodoItems(res))
       .catch((e) => dispatchToast(e.message, "error"));
     setIsOpen(false);
+    dispatchToast("Todo Item Added", "success");
   };
+
   const onSubmitEdit = async (data: any) => {
-    await TodoItem.update(todoItem?.id, data).then((res) => setTodoItems(res));
+    await TodoItem.update(todoItem?.id, data).then((res) => {
+      dispatchToast("Todo Item Updated", "success"), setTodoItems(res);
+    });
     setIsOpen(false);
     setTodoItem(undefined);
   };
