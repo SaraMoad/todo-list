@@ -9,16 +9,13 @@ export interface TodoItem {
 
 export class TodoItem {
     public static async getAll(): Promise<any> {
-        try {
-            const data = await fetch('http://localhost:8080/todoList');
-            const jsonData = await data.json();
-            return jsonData
-        }
-        catch (e) {
-            console.log(e)
-        }
+      const data = await fetch('http://localhost:8080/todoList');
+      if (!data.ok) {
+            throw new Error('Failed to get todo Items');
+          }
+          return data.json();
 
-    }
+  };
         public static async find(id: string): Promise<any> {
         const data = await fetch(`http://localhost:8080/todoList/${id}`);
           if (!data.ok) {

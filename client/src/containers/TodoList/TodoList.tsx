@@ -7,7 +7,7 @@ interface TodoListProps {
   setTodoItems: (res: any) => any;
   setTodoItem: (res: any) => any;
   setIsOpen: (value: boolean) => unknown;
-  dispatchToast: (message: string, variant: string) => unknown;
+  dispatchToast: (message: string, variant: string) => any;
 }
 const TodoList = ({
   todoItems,
