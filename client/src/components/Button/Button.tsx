@@ -1,7 +1,7 @@
 import styles from "./Button.module.scss";
 interface ButtonProps {
   children: React.ReactNode;
-  handleClick: () => any;
+  handleClick: () => void;
 }
 
 const Button = ({ handleClick, children }: ButtonProps) => {

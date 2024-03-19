@@ -64,4 +64,5 @@ logs
 ._UpdateTodoItemDTO.java
 ._Application.java
 ._exceptions
-/application.properties/
+application.properties
+._application.properties

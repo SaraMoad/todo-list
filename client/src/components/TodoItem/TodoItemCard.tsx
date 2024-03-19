@@ -65,7 +65,11 @@ const TodoItemCard = ({
           <button className={styles.button} onClick={handleEdit}>
             <FontAwesomeIcon className={styles.icon} icon={faPencil} />
           </button>
-          <button className={styles.button} onClick={handleDelete}>
+          <button
+            data-testId="deleteButton"
+            className={styles.button}
+            onClick={handleDelete}
+          >
             <FontAwesomeIcon className={styles.icon} icon={faTrash} />
           </button>
         </div>
