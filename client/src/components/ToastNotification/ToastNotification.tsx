@@ -26,7 +26,7 @@ const ToastNotification = ({
   if (variant === "success") {
     classList = [styles.toastContent, styles.success];
   } else if (variant === "error") {
-    classList = [styles.toastContent, styles.success];
+    classList = [styles.toastContent, styles.error];
   }
 
   return (
