@@ -24,16 +24,15 @@ const Modal = ({
 }: ModalProps) => {
   const onSubmit = async (data: any) => {
     await TodoItem.add(data)
-      .then((res) => setTodoItems(res))
+      .then((res) => {setTodoItems(res), dispatchToast("Todo Item Added", "success")})
       .catch((e) => dispatchToast(e.message, "error"));
     setIsOpen(false);
-    dispatchToast("Todo Item Added", "success");
   };
 
   const onSubmitEdit = async (data: any) => {
-    await TodoItem.update(todoItem?.id, data).then((res) => {
-      dispatchToast("Todo Item Updated", "success"), setTodoItems(res);
-    });
+    await TodoItem.update(todoItem?.id, data)
+    .then((res) => {setTodoItems(res), dispatchToast("Todo Item Updated", "success")})
+      .catch((e) => dispatchToast(e.message, "error"));
     setIsOpen(false);
     setTodoItem(undefined);
   };
