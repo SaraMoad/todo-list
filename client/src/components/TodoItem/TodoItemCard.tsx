@@ -38,13 +38,14 @@ const TodoItemCard = ({
 
   const handleDelete = () => {
     TodoItem.delete(id)
-      .then((res) => setTodoItems(res))
+      .then((res) =>{ setTodoItems(res), dispatchToast("Todo Task Deleted", "success")})
       .catch((res) => dispatchToast(res.message, "error"));
-    dispatchToast("Todo Task Deleted", "success");
+  
   };
 
   const handleEdit = async () => {
-    await TodoItem.find(id).then((res) => setTodoItem(res));
+    await TodoItem.find(id).then((res) => setTodoItem(res))
+    .catch((res) => dispatchToast(res.message, "error"));
     setIsOpen(true);
   };
 
